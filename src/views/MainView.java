@@ -113,7 +113,7 @@ public class MainView {
 
     private void buttonAnalyseOnClickListener() {
         if (textFieldFile.getText().length() > 0) {
-            countWordsController.read(textFieldFile.getText());
+            countWordsController.selectFile(textFieldFile.getText());
         }
     }
 

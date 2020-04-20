@@ -39,10 +39,10 @@ public class CountWordsController {
     }
 
     /**
-     * Abre a seleção de arquivos e processa um arquivo TXT
+     * Seleciona um arquivo
      * @param filePath Endereço do arquivo/diretório
      */
-    public void read(String filePath) {
+    public void selectFile(String filePath) {
         File file = new File(filePath);
         JFileChooser fileChooser = new JFileChooser();
 
@@ -60,19 +60,27 @@ public class CountWordsController {
                 }
             }
 
-            try {
-                HashMap<String, Integer> wordsMap = countWordsInFile(file);
-                mainView.loadWordsInTable(file.getAbsolutePath(), wordsMap);
-                openedFile = file.getAbsolutePath();
-            } catch (FileNotFoundException ex) {
-                showError("Arquivo não encontrado");
-            } catch (IllegalArgumentException ex) {
-                showError("O endereço informado não é um arquivo válido");
-            } catch (Exception ex) {
-                showError("Não foi possível ler o arquivo");
-            }
+            processFile(file);
         } catch (Exception ex) {
             showError("Não foi possível abrir o arquivo");
+        }
+    }
+
+    /**
+     * Processa um arquivo
+     * @param file Arquivo
+     */
+    private void processFile(File file) {
+        try {
+            HashMap<String, Integer> wordsMap = countWordsInFile(file);
+            mainView.loadWordsInTable(file.getAbsolutePath(), wordsMap);
+            openedFile = file.getAbsolutePath();
+        } catch (FileNotFoundException ex) {
+            showError("Arquivo não encontrado");
+        } catch (IllegalArgumentException ex) {
+            showError("O endereço informado não é um arquivo válido");
+        } catch (Exception ex) {
+            showError("Não foi possível ler o arquivo");
         }
     }
 
@@ -82,7 +90,7 @@ public class CountWordsController {
      * @return Mapa chave-valor das palavras e suas frequências
      * @throws FileNotFoundException
      */
-    public HashMap<String, Integer> countWordsInFile(File file) throws FileNotFoundException {
+    private HashMap<String, Integer> countWordsInFile(File file) throws FileNotFoundException {
         Collection<String> words = textFileService.readFileAsCollection(file);
         HashMap<String, Integer> wordsMap = wordService.countWords(words);
         return wordsMap;
