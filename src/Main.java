@@ -1,19 +1,18 @@
-import services.TextFileService;
-import services.WordService;
-
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
+/**
+ * Trabalho II de Programação II
+ * Alunos Lucas Samuel e Matheus Boing
+ */
+import controllers.CountWordsController;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
-        TextFileService textFileService = new TextFileService();
-        Collection<String> lines = textFileService.readFileAsCollection(".\\temp\\file.txt");
+    public static void main(String[] args) {
+        CountWordsController countWordsController = new CountWordsController();
 
-        WordService wordService = new WordService();
-        HashMap<String, Integer> words = wordService.countWords(lines);
-
-        words.forEach((key, value) -> System.out.println(String.format("%s - %s", key, value)));
+        try {
+            countWordsController.view();
+        } catch (Exception ex) {
+            countWordsController.showError("Houve um erro durante a execução do programa.");
+            System.exit(-1);
+        }
     }
 }

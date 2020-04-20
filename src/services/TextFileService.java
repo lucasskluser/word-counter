@@ -1,3 +1,7 @@
+/**
+ * Trabalho II de Programação II
+ * Alunos Lucas Samuel e Matheus Boing
+ */
 package services;
 
 import java.io.*;
@@ -5,9 +9,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
 
+/**
+ * Serviço responsável por processar um arquivo de texto
+ */
 public class TextFileService {
-    public Collection<String> readFileAsCollection(String filePath) throws FileNotFoundException {
-        File file = new File(filePath);
+    /**
+     * Lê um arquivo de texto como uma coleção
+     * @param file Arquivo
+     * @return Coleção de strings do arquivo
+     * @throws FileNotFoundException
+     */
+    public Collection<String> readFileAsCollection(File file) throws FileNotFoundException {
         validateFile(file);
 
         Scanner scanner = new Scanner(file);
@@ -20,6 +32,11 @@ public class TextFileService {
         return lines;
     }
 
+    /**
+     * Valida o arquivo a ser processado
+     * @param file Arquivo
+     * @throws FileNotFoundException
+     */
     private void validateFile(File file) throws FileNotFoundException {
         if (!file.exists()) {
             throw new FileNotFoundException();
