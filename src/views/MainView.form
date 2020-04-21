@@ -69,7 +69,9 @@
         <children>
           <component id="d124a" class="javax.swing.JTable" binding="tableWordsFrequency" custom-create="true">
             <constraints/>
-            <properties/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
           </component>
         </children>
       </scrollpane>

@@ -52,13 +52,13 @@ public class WordService {
      */
     private String normalizeWord(String word) {
         String[] punctuations = {
-          ".", ",", ";", ":", "\"", "'", "\\", "/", "(", ")", "[", "]", "{", "}", "<", ">", "-", "+", "*", " "
+          ".", ",", ";", ":", "\"", "'", "\\", "/", "(", ")", "[", "]", "{", "}", "<", ">", "-", "+", "*"
         };
 
         for (String punctuation : punctuations) {
             word = word.replace(punctuation, "");
         }
 
-        return word;
+        return word.toLowerCase().trim();
     }
 }
