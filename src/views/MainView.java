@@ -166,7 +166,10 @@ public class MainView {
      */
     private void sortTableByColumnIndex(int columnIndex) {
         List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-        sortKeys.add(new RowSorter.SortKey(columnIndex, SortOrder.ASCENDING));
+
+        SortOrder sortOrder = columnIndex == 0 ? SortOrder.ASCENDING : SortOrder.DESCENDING;
+
+        sortKeys.add(new RowSorter.SortKey(columnIndex, sortOrder));
         tableSorter.setSortKeys(sortKeys);
         tableSorter.sort();
     }
