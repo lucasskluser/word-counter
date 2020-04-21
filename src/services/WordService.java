@@ -52,7 +52,7 @@ public class WordService {
      */
     private String normalizeWord(String word) {
         String[] punctuations = {
-          ".", ",", ";", ":", "\"", "'", "\\", "/", "(", ")", "[", "]", "{", "}", "<", ">", "-", "+", "*"
+          ".", ",", ";", ":", "\"", "'", "\\", "/", "(", ")", "[", "]", "{", "}", "<", ">", "-", "+", "*", "="
         };
 
         for (String punctuation : punctuations) {
